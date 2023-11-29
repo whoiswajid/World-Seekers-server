@@ -60,6 +60,14 @@ async function run() {
     })
 
     // add story
+
+    app.get('/story', async(req,res) =>{
+      const cursor = storyCollection.find();
+      const result = await cursor.toArray();
+      res.send(result);
+    })
+
+
     app.post('/story', async (req, res) => {
       const newStory = req.body;
       const result = await storyCollection.insertOne(newStory)
